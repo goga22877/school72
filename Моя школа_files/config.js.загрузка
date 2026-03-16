@@ -1,0 +1,15 @@
+(function () {
+  const xhr = new XMLHttpRequest();
+  xhr.open("GET", `./config.json`, true);
+  xhr.getResponseHeader("Content-type", "application/json");
+  xhr.onload = function() {
+    try {
+      JSON.parse(this.responseText);
+      localStorage.setItem("aupd_local_config", this.responseText)
+    }catch (e) {
+      localStorage.setItem("aupd_local_config", '')
+    }
+  }
+
+  xhr.send();
+}());
